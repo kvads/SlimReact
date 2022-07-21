@@ -7,3 +7,17 @@ services:
       - "8080:80"
     volumes:
       - ./frontend:/app
+  api:
+    build:
+        context: api/docker/dev/nginx
+    ports:
+      - "8081:80"
+    volumes:
+      - ./api:/app
+    depends_on:
+      - api-php-fpm
+  api-php-fpm:
+    build:
+      context: api/docker/dev/php-fpm
+    volumes:
+      - ./api:/app
