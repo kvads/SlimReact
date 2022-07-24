@@ -49,3 +49,9 @@ deploy:
 	ssh ${HOST} -p ${PORT} 'cd auction_${BUILD_NUMBER} && docker-compose -f docker-compose-prod.yml up --build --remove-orphans -d'
 	ssh ${HOST} -p ${PORT} 'rm -f auction'
 	ssh ${HOST} -p ${PORT} 'ln -sr auction_${BUILD_NUMBER} auction'
+
+rollback:
+	ssh ${HOST} -p ${PORT} 'cd auction_${BUILD_NUMBER} && docker-compose -f docker-compose-prod.yml pull'
+	ssh ${HOST} -p ${PORT} 'cd auction_${BUILD_NUMBER} && docker-compose -f docker-compose-prod.yml up --build --remove-orphans -d'
+	ssh ${HOST} -p ${PORT} 'rm -f auction'
+	ssh ${HOST} -p ${PORT} 'ln -sr auction_${BUILD_NUMBER} auction'
