@@ -1,4 +1,4 @@
-certbot_email: kvasyukov99@gmail.com
+certbot_email: webmaster@kvasyukov99.fvds.ru
 certbot_hosts:
     - kvasyukov99.fvds.ru
-    - api.kvasyukov99.fvds.ru
+ansible_python_interpreter: /usr/bin/python3

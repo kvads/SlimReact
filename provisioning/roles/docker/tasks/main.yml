@@ -36,15 +36,15 @@
     notify: Start docker on boot
 -   name: Install Docker Compose
     get_url:
-      url: https://github.com/docker/compose/releases/download/1.25.0/docker-compose-{{ ansible_system }}-x86_64
+      url: https://github.com/docker/compose/releases/download/1.25.0/docker-compose-{{ ansible_system }}-{{ ansible_userspace_architecture }}
       dest: /usr/local/bin/docker-compose
       group: docker
       mode: 'u+x,g+x'
 -   name: Set periodic Docker prune
     cron:
       name: docker-prune
-      job: 'docker system prune -f --filter "until=$((30*24))h"
-        minute: '0'
+      job: 'docker system prune -f --filter "until=$((30*24))h"'
+      minute: '0'
       hour: '1'
 
 -   name: Remove useless packages
