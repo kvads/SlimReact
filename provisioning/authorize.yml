@@ -1,6 +1,6 @@
 ---
 -   name: Add authorized key
-    hosts: all
+    hosts: auction
     remote_user: root
     tasks:
         -   name: Add user authorized key
