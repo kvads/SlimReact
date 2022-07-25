@@ -1,0 +1,4 @@
+certbot_email: kvasyukov99@gmail.com
+certbot_hosts:
+    - kvasyukov99.fvds.ru
+    - api.kvasyukov99.fvds.ru
