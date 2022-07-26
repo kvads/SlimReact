@@ -17,7 +17,7 @@
     when: port_check.failed == true
 
 -   name: Generate new certificate
-    shell: "certbot --manual --agree-tos --manual-public-ip-logging-ok --preferred-challenges dns certonly --email {{ certbot_email }} --server https://acme-v02.api.letsencrypt.org/directory -d *.{{ item.item }} -d {{ item.item }}"
+    shell: "certbot certonly --noninteractive --agree-tos --email {{ certbot_email }} -d {{ item.item }}"
     with_items: "{{ letsencrypt_certs.results }}"
     when: not item.stat.exists
 

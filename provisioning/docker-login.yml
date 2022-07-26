@@ -1,10 +1,8 @@
 ---
--    name: Log into private registry
-     hosts: auction
-     remote_user: root
-     become: yes
-     become_user: deploy
-     vars_prompt:
+-   name: Log into private registry
+    hosts: auction
+    remote_user: root
+    vars_prompt:
         -   name: registry
             prompt: "Registry"
             private: no
@@ -14,5 +12,6 @@
         -   name: password
             prompt: "Password"
     tasks:
-      -   name: Log into private registry
-          shell: "docker login -u {{ username }} -p {{ pasword }} {{ registry }}
+        -   name: Log into private registry
+            shell: "echo {{ password }} | docker login -u {{ username }} --password-stdin {{ registry }}"
+
