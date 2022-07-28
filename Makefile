@@ -19,24 +19,24 @@ docker-prune:
 build: build-gateway build-frontend build-api
 
 build-gateway:
-	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx/Dockerfile --tag=${REGISTRY}/auction-gateway:${IMAGE_TAG} gateway/docker
+	docker --log-level=debug build --pull --file=gateway/docker/prod/nginx/Dockerfile --tag=${REGISTRY}/slimreactipr:${IMAGE_TAG}-gateway gateway/docker
 build-frontend:
-	docker --log-level=debug build --pull --file=frontend/docker/prod/nginx/Dockerfile --tag=${REGISTRY}/auction-frontend:${IMAGE_TAG} frontend
+	docker --log-level=debug build --pull --file=frontend/docker/prod/nginx/Dockerfile --tag=${REGISTRY}/slimreactipr:${IMAGE_TAG}-frontend frontend
 build-api:
-	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm/Dockerfile --tag=${REGISTRY}/auction-api-php-fpm:${IMAGE_TAG} api
-	docker --log-level=debug build --pull --file=api/docker/prod/nginx/Dockerfile --tag=${REGISTRY}/auction-api:${IMAGE_TAG} api
+	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm/Dockerfile --tag=${REGISTRY}/slimreactipr:${IMAGE_TAG}-fpm api
+	docker --log-level=debug build --pull --file=api/docker/prod/nginx/Dockerfile --tag=${REGISTRY}/slimreactipr:${IMAGE_TAG}-nginx api
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make build
 
 push: push-gateway push-frontend push-api
 
 push-gateway:
-	docker push ${REGISTRY}/auction-gateway:${IMAGE_TAG}
+	docker push ${REGISTRY}/slimreactipr:${IMAGE_TAG}-gateway
 push-frontend:
-	docker push ${REGISTRY}/auction-frontend:${IMAGE_TAG}
+	docker push ${REGISTRY}/slimreactipr:${IMAGE_TAG}-frontend
 push-api:
-	docker push ${REGISTRY}/auction-api:${IMAGE_TAG}
-	docker push ${REGISTRY}/auction-api-php-fpm:${IMAGE_TAG}
+	docker push ${REGISTRY}/slimreactipr:${IMAGE_TAG}-nginx
+	docker push ${REGISTRY}/slimreactipr:${IMAGE_TAG}-fpm
 
 deploy:
 	ssh ${HOST} -p ${PORT} 'rm -rf auction_${BUILD_NUMBER}'

@@ -3,9 +3,6 @@
     hosts: auction
     remote_user: root
     vars_prompt:
-        -   name: registry
-            prompt: "Registry"
-            private: no
         -   name: username
             prompt: "Username"
             private: no
@@ -13,5 +10,5 @@
             prompt: "Password"
     tasks:
         -   name: Log into private registry
-            shell: "echo {{ password }} | docker login -u {{ username }} --password-stdin {{ registry }}"
+            shell: "echo {{ password }} | docker login -u {{ username }} --password-stdin"
 

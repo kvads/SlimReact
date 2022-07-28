@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   gateway:
-    image: ${REGISTRY}/auction-gateway:${IMAGE_TAG}
+    image: ${REGISTRY}/slimreactipr:${IMAGE_TAG}-gateway
     restart: always
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
@@ -14,15 +14,15 @@ services:
       - api
 
   frontend:
-    image: ${REGISTRY}/auction-frontend:${IMAGE_TAG}
+    image: ${REGISTRY}/slimreactipr:${IMAGE_TAG}-frontend
     restart: always
 
   api:
-    image: ${REGISTRY}/auction-api:${IMAGE_TAG}
+    image: ${REGISTRY}/slimreactipr:${IMAGE_TAG}-nginx
     restart: always
     depends_on:
       - api-php-fpm
 
   api-php-fpm:
-    image: ${REGISTRY}/api-php-fpm:${IMAGE_TAG}
+    image: ${REGISTRY}/slimreactipr:${IMAGE_TAG}-fpm
     restart: always
