@@ -2,6 +2,7 @@
 -   name: Log into private registry
     hosts: auction
     remote_user: root
+    become_user: deploy
     vars_prompt:
         -   name: username
             prompt: "Username"
