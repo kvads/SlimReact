@@ -25,6 +25,7 @@ build-frontend:
 build-api:
 	docker --log-level=debug build --pull --file=api/docker/prod/php-fpm/Dockerfile --tag=${REGISTRY}/slimreactipr:${IMAGE_TAG}-fpm api
 	docker --log-level=debug build --pull --file=api/docker/prod/nginx/Dockerfile --tag=${REGISTRY}/slimreactipr:${IMAGE_TAG}-nginx api
+	docker --log-level=debug build --pull --file=api/docker/prod/php-cli/Dockerfile --tag=${REGISTRY}/slimreactipr:${IMAGE_TAG}-cli api
 try-build:
 	REGISTRY=localhost IMAGE_TAG=0 make build
 
