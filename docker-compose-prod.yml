@@ -26,6 +26,8 @@ services:
   api-php-fpm:
     image: ${REGISTRY}/slimreactipr:${IMAGE_TAG}-fpm
     restart: always
+    environment:
+        DEBUG_MODE: 0
 
   api-php-cli:
     image: ${REGISTRY}/slimreactipr:${IMAGE_TAG}-cli
