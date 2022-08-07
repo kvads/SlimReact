@@ -32,6 +32,7 @@ services:
       context: api/docker
       dockerfile: dev/php-fpm/Dockerfile
     environment:
+        APP_ENV: dev
         DEBUG_MODE: 1
     volumes:
       - ./api:/app

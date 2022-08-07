@@ -27,6 +27,7 @@ services:
     image: ${REGISTRY}/slimreactipr:${IMAGE_TAG}-fpm
     restart: always
     environment:
+        APP_ENV: prod
         DEBUG_MODE: 0
 
   api-php-cli:
