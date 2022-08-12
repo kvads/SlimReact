@@ -11,7 +11,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use stdClass;
 
 
-class  HomeAction implements RequestHandlerInterface
+class HomeAction implements RequestHandlerInterface
 {
     /**
      * @throws JsonException
