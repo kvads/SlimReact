@@ -3,6 +3,7 @@ up: docker-up
 down: docker-down
 restart: down up
 lint: api-lint
+sniff-fix: api-cs-fix
 
 docker-up:
 	docker-compose up -d
@@ -20,10 +21,15 @@ docker-prune:
 api-init: api-composer-install
 
 api-composer-install:
+	docker-compose run --rm api-php-cli composer update
 	docker-compose run --rm api-php-cli composer install
 
 api-lint:
 	docker-compose run --rm api-php-cli composer lint
+	docker-compose run --rm api-php-cli composer cs-check
+
+api-cs-fix:
+	docker-compose run --rm api-php-cli composer cs-fix
 
 build: build-gateway build-frontend build-api
 
